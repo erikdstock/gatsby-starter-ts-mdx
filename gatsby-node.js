@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const { introspectionQuery, graphql, printSchema } = require("gatsby/graphql")
-
+const write = require("write")
 
 /**
  * Generate GraphQL schema.json file to be read by tslint
