@@ -6,6 +6,16 @@
 const { introspectionQuery, graphql, printSchema } = require("gatsby/graphql")
 const write = require("write")
 
+
+/**
+ * Add the file-system as an api proxy:
+ * https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
+ */
+exports.onCreateDevServer = ({ app }) => {
+  const fsMiddlewareAPI = require("netlify-cms-backend-fs/dist/fs")
+  fsMiddlewareAPI(app)
+}
+
 /**
  * Generate GraphQL schema.json file to be read by tslint
  * Thanks: https://gist.github.com/kkemple/6169e8dc16369b7c01ad7408fc7917a9
