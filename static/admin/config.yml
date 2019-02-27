@@ -42,6 +42,8 @@ collections:
   - name: blog
     label: Blog
     folder: content/blog
+    extension: 'mdx'
+    format: 'frontmatter'
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -55,7 +57,7 @@ collections:
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
       - { label: Tags, name: tags, widget: list }
-      - { label: Body, name: body, widget: markdown }
+      - { label: Body, name: body, widget: mdx }
   # - name: til
   #   label: TIL
   #   folder: content/til

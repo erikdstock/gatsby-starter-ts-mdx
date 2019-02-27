@@ -7,7 +7,29 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        extensions: [".mdx", ".md"],
+        defaultLayouts: {
+          // define more Layouts here if you like,
+          // matching keys to the `name` from a gatsby-source-filesystem config (eg `blog`)
+          default: require.resolve("./src/components/DefaultLayout.tsx")
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 590,
+            },
+          },
+        ],
+      }
+    },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,8 +37,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -46,6 +66,16 @@ module.exports = {
         path: `${__dirname}/content/blog/`,
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "about",
+        path: `${__dirname}/content/about/`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sharp`,
     "gatsby-plugin-styled-components",
     "gatsby-plugin-typescript",
     // this (optional) plugin enables Progressive Web App + Offline functionality
