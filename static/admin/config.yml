@@ -5,7 +5,7 @@ localhost_development:
     name: file-system
     api_root: /api
   display_url: http://localhost:8000
-  publish_mode: editorial_workflow
+  publish_mode: simple
 
 backend:
   name: github
@@ -18,6 +18,27 @@ site_url: https://erik.netlify.com
 publish_mode: editorial_workflow
 
 collections:
+  - name: pages
+    label: Pages
+    files:
+      - file: "content/about/index.md"
+        label: "About"
+        name: "about"
+        fields:
+          - {
+              label: "Collection Name",
+              name: "collectionName",
+              widget: "hidden",
+              default: "pages",
+            }
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "Basic",
+            }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
   - name: blog
     label: Blog
     folder: content/blog
@@ -28,27 +49,27 @@ collections:
           label: Template Key,
           name: templateKey,
           widget: hidden,
-          default: blog-post,
+          default: BlogPost,
         }
       - { label: Title, name: title, widget: string }
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
       - { label: Tags, name: tags, widget: list }
       - { label: Body, name: body, widget: markdown }
-  - name: til
-    label: TIL
-    folder: content/til
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {
-          label: Template Key,
-          name: templateKey,
-          widget: hidden,
-          default: today-i-learned,
-        }
-      - { label: Title, name: title, widget: string }
-      - { label: Publish Date, name: date, widget: datetime }
-      - { label: Description, name: description, widget: text }
-      - { label: Tags, name: tags, widget: list }
-      - { label: Body, name: body, widget: markdown }
+  # - name: til
+  #   label: TIL
+  #   folder: content/til
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   fields:
+  #     - {
+  #         label: Template Key,
+  #         name: templateKey,
+  #         widget: hidden,
+  #         default: today-i-learned,
+  #       }
+  #     - { label: Title, name: title, widget: string }
+  #     - { label: Publish Date, name: date, widget: datetime }
+  #     - { label: Description, name: description, widget: text }
+  #     - { label: Tags, name: tags, widget: list }
+  #     - { label: Body, name: body, widget: markdown }
