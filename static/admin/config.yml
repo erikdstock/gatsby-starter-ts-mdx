@@ -9,12 +9,12 @@ localhost_development:
 
 backend:
   name: github
-  repo: erikdstock/eriks-dotcom # change
+  repo: erikdstock/gatsby-ts-2019 # change
   branch: master
 
 media_folder: static/assets
 public_folder: assets
-site_url: https://erik.netlify.com
+site_url: https://festive-villani-316b3c.netlify.com
 publish_mode: editorial_workflow
 
 collections:
@@ -42,8 +42,8 @@ collections:
   - name: blog
     label: Blog
     folder: content/blog
-    extension: 'mdx'
-    format: 'frontmatter'
+    extension: "mdx"
+    format: "frontmatter"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
