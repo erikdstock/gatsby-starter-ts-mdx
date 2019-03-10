@@ -1,42 +1,33 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import { Box, Text } from "rebass"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
+const Header: React.FunctionComponent<{ siteTitle: string }> = ({
+  siteTitle,
+}) => (
+  <Box bg="rebeccapurple" mb="1.45rem">
+    <Box
+      my={0}
+      mx="auto"
+      p="1.45rem 1.0875rem"
       style={{
         margin: `0 auto`,
-        maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
+      <Link
+        to="/"
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+        }}
+      >
+        <Text as="h1" fontFamily="sans" style={{ margin: 0 }}>
           {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+        </Text>
+      </Link>
+    </Box>
+  </Box>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
