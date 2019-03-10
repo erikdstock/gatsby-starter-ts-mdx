@@ -4,4 +4,14 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-// You can delete this file if you're not using it
+// import React from "react"
+// import {Theme} from './src/components/Theme'
+
+
+// export const wrapRootElement = ({ element }) => {
+//   return (
+//     <Theme>
+//       {element}
+//     </Theme>
+//   )
+// }
