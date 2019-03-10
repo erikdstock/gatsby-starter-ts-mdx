@@ -10,24 +10,22 @@ const path = require("path")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-
   // Add path to markdown nodes
   if (node.internal.type === "MarkdownRemark") {
-    let nodePath = node.frontmatter.path
-
-    // if there is a path in frontmatter, use it
-    if (!nodePath) {
-      const subPath = `/${node.frontmatter.collectionName || "/writing"}`
-      nodePath = path.join(
-        subPath,
-        createFilePath({
-          node,
-          getNode,
-          basePath: "content/blog", // for now all content is coming from here
-          trailingSlash: false,
-        })
-      )
-    }
+    // console.log(node)
+    // console.log(node.frontmatter.collectionName)
+    // markdown from 'pages' collection goes to root.
+    const collectionName = node.frontmatter.collectionName
+    const pageLocation = collectionName === "pages" ? "/" : `/${collectionName}`
+    const nodePath = path.join(
+      pageLocation,
+      createFilePath({
+        node,
+        getNode,
+        basePath: "content/blog", // for now all content is coming from here
+        trailingSlash: false,
+      })
+    )
     // console.log("\ncreating slug field", nodePath)
     createNodeField({
       name: `path`,
@@ -54,7 +52,6 @@ exports.createPages = ({ actions, graphql }) => {
             id
             excerpt
             frontmatter {
-              path
               collectionName
             }
             fields {
@@ -77,6 +74,15 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
   })
+}
+
+/**
+ * Add the file-system as an api proxy:
+ * https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
+ */
+exports.onCreateDevServer = ({ app }) => {
+  const fsMiddlewareAPI = require("netlify-cms-backend-fs/dist/fs")
+  fsMiddlewareAPI(app)
 }
 
 /**
