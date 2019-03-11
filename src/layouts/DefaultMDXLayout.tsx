@@ -1,16 +1,16 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import MDXRenderer from "gatsby-mdx/mdx-renderer"
 import { H2 } from "../Theme"
 import Layout from "../layouts/SiteLayout"
+import SEO from "../components/SEO"
 
 /**
  * An MDX Layout (requires a default export)
  */
 export default ({ data: { mdx } }) => (
   <Layout>
-    <Helmet title={`${mdx.frontmatter.title}`} />
+    <SEO title={mdx.frontmatter.title} keywords={mdx.frontmatter.tags} />
     {/*
       The SEO block is already in the main page layouts (pages/index.tsx etc) -
       This from the example is intended to be used if you are writing whole pages from mdx
@@ -31,6 +31,7 @@ export const pageQuery = graphql`
       id
       frontmatter {
         title
+        tags
       }
       code {
         body
