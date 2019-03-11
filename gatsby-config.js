@@ -2,9 +2,10 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `A gatsby starter based of Typescript, netlify-cms and rebass`,
-    author: `@gatsbyjs`,
+    title: `Gatsby 2019`,
+    description: `A gatsby starter using Typescript, Netlify-CMS, MDX and Netlify
+    Inspired by https://github.com/damassi/gatsby-starter-typescript-rebass-netlifycms`,
+    author: `@erikdstock`,
   },
   plugins: [
     /**
