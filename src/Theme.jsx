@@ -8,7 +8,7 @@ import styledNormalize from "styled-normalize"
 import { Text } from "rebass"
 
 const Heading = props => <Text fontFamily="sans" {...props} />
-const P = props => <Text fontFamily="mono" {...props} />
+const P = props => <Text fontFamily="serif" {...props} />
 const H1 = props => <Heading as="h1" {...props} />
 const H2 = props => <Heading as="h2" {...props} />
 const H3 = props => <Heading as="h3" {...props} />
@@ -53,7 +53,7 @@ const theme = {
   },
 }
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   ${styledNormalize};
   * {
     font-family: ${theme.fonts.serif};
