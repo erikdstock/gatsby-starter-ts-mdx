@@ -6,8 +6,11 @@ import Image from "../components/Image"
 import SEO from "../components/SEO"
 
 const IndexPage = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark
-
+  const { edges: markdownPosts } = data.allMarkdownRemark
+  const { edges: mdxPosts } = data.allMdx
+  const posts = markdownPosts
+    .concat(mdxPosts)
+    .sort((a, b) => a.node.frontmatter.rawDate - b.node.frontmatter.rawDate)
   return (
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -39,7 +42,7 @@ const IndexPage = ({ data }) => {
                   {post.frontmatter.date}
                 </Text>
                 <Text color="gray.2">
-                  <i>{post.excerpt}</i>
+                  <i>{post.frontmatter.description}</i>
                 </Text>
               </Link>
             </Box>
@@ -51,17 +54,39 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage
 
+// Because we're interleaving the posts manually in the component function,
+// these queries don't *need* sort parameters.
+// This sort of mixing of markdown and mdx queries is probably needlessly complicated-
+// Consider choosing one and sticking with it.
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
           id
           frontmatter {
             collectionName
+            description
             title
             date(formatString: "MMMM DD, YYYY")
+            rawDate: date(formatString: "X")
+          }
+          fields {
+            path
+          }
+        }
+      }
+    }
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          id
+          frontmatter {
+            collectionName
+            description
+            title
+            date(formatString: "MMMM DD, YYYY")
+            rawDate: date(formatString: "X")
           }
           fields {
             path
