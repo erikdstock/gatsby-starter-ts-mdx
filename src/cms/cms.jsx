@@ -1,3 +1,7 @@
+import React, { Component } from "react"
+import { StyleSheetManager } from "styled-components"
+import { MdxControl, MdxPreview } from "netlify-cms-widget-mdx"
+import { Theme, LayoutComponents } from "../components/Theme"
 import { FileSystemBackend } from "netlify-cms-backend-fs"
 import CMS, { init } from "netlify-cms"
 
@@ -16,16 +20,6 @@ if (isDevelopment) {
   // Attach to the file system
   CMS.registerBackend("file-system", FileSystemBackend)
 }
-
-// Start the CMS
-init()
-
-/* Future mdx config
-// import React, { Component } from "react"
-// import { StyleSheetManager } from "styled-components"
-// import { MdxControl, MdxPreview } from "netlify-cms-widget-mdx"
-// import { Theme, LayoutComponents } from "../components/Theme"
-
 
 // Custom components need refs for validation and thus must be a class.
 // Additionally, after <Theme>, only one child is allowed.
@@ -70,4 +64,6 @@ const PreviewWindow = props => {
 }
 
 CMS.registerWidget("mdx", MDXWidget, PreviewWindow)
-*/
+
+// Start the CMS
+init()

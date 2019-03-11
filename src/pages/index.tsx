@@ -6,8 +6,11 @@ import Image from "../components/Image"
 import SEO from "../components/SEO"
 
 const IndexPage = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark
-
+  const { edges: markdownPosts } = data.allMarkdownRemark
+  const { edges: mdxPosts } = data.allMdx
+  const posts = markdownPosts
+    .concat(mdxPosts)
+    .sort((a, b) => a.node.frontmatter.rawDate - b.node.frontmatter.rawDate)
   return (
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -51,6 +54,8 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage
 
+// Because we're interleaving the posts manually in the component function,
+// these queries don't *need* sort parameters.
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
@@ -62,6 +67,24 @@ export const pageQuery = graphql`
             collectionName
             title
             date(formatString: "MMMM DD, YYYY")
+            rawDate: date(formatString: "X")
+          }
+          fields {
+            path
+          }
+        }
+      }
+    }
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          id
+          frontmatter {
+            collectionName
+            title
+            date(formatString: "MMMM DD, YYYY")
+            rawDate: date(formatString: "X")
           }
           fields {
             path

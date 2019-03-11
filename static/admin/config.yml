@@ -58,30 +58,42 @@ collections:
           widget: "hidden",
           default: "blog",
         }
+      # - {
+      #     label: Template Key,
+      #     name: templateKey,
+      #     widget: hidden,
+      #     default: BlogPost,
+      #   }
       - { label: Title, name: title, widget: string }
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
       - { label: Tags, name: tags, widget: list }
       - { label: Body, name: body, widget: markdown }
-  # - name: mdx
-  #   label: MDX
-  #   folder: content/blog
-  #   extension: 'mdx'
-  #   format: 'frontmatter'
-  #   create: true
-  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-  #   fields:
-  #     - {
-  #         label: Template Key,
-  #         name: templateKey,
-  #         widget: hidden,
-  #         default: BlogPost,
-  #       }
-  #     - { label: Title, name: title, widget: string }
-  #     - { label: Publish Date, name: date, widget: datetime }
-  #     - { label: Description, name: description, widget: text }
-  #     - { label: Tags, name: tags, widget: list }
-  #     - { label: Body, name: body, widget: mdx }
+  - name: mdx
+    label: MDX
+    create: true
+    folder: content/blog
+    extension: "mdx"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {
+          label: "Collection Name",
+          name: "collectionName",
+          widget: "hidden",
+          default: "blog",
+        }
+      # - {
+      #     label: Template Key,
+      #     name: templateKey,
+      #     widget: hidden,
+      #     default: BlogPost,
+      #   }
+      - { label: Title, name: title, widget: string }
+      - { label: Publish Date, name: date, widget: datetime }
+      - { label: Description, name: description, widget: text }
+      - { label: Tags, name: tags, widget: list }
+      - { label: Body, name: body, widget: mdx }
   # - name: til
   #   label: TIL
   #   folder: content/til

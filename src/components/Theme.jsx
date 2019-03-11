@@ -1,6 +1,28 @@
-import React from 'react'
-import {ThemeProvider, createGlobalStyle} from 'styled-components'
-import styledNormalize from 'styled-normalize'
+import React from "react"
+import { ThemeProvider, createGlobalStyle } from "styled-components"
+import styledNormalize from "styled-normalize"
+import { Text } from "rebass"
+
+const Heading = props => <Text fontFamily="sans" {...props} />
+const P = props => <Text fontFamily="mono" {...props} />
+const H1 = props => <Heading as="h1" {...props} />
+const H2 = props => <Heading as="h2" {...props} />
+const H3 = props => <Heading as="h3" {...props} />
+const H4 = props => <Heading as="h4" {...props} />
+
+export { P, H1, H2, H3, H4 }
+
+/**
+ * Exported components for the mdx renderer to use when rendering markdown:
+ * https://www.gatsbyjs.org/packages/gatsby-mdx/?=mdx#mdxprovider
+ */
+export const LayoutComponents = {
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  p: P,
+}
 
 const theme = {
   breakpoints: {
@@ -39,7 +61,7 @@ const GlobalStyle = createGlobalStyle`
 export const Theme = props => (
   <ThemeProvider theme={theme}>
     <>
-      <GlobalStyle/>
+      <GlobalStyle />
       {props.children}
     </>
   </ThemeProvider>
