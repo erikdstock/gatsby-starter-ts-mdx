@@ -6,15 +6,7 @@ const Header: React.FunctionComponent<{ siteTitle: string }> = ({
   siteTitle,
 }) => (
   <Box bg="rebeccapurple" mb="1.45rem">
-    <Box
-      my={0}
-      mx="auto"
-      p="1.45rem 1.0875rem"
-      style={{
-        margin: `0 auto`,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+    <Box my={0} mx="auto" p="1.45rem 1.0875rem">
       <Link
         to="/"
         style={{

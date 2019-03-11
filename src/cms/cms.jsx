@@ -1,5 +1,17 @@
+import React, { Component } from "react"
+import { Button, Box, Text } from "rebass"
+import { StyleSheetManager } from "styled-components"
+import { MdxControl, MdxPreview } from "netlify-cms-widget-mdx"
+import { Theme, LayoutComponents } from "../Theme"
 import { FileSystemBackend } from "netlify-cms-backend-fs"
 import CMS, { init } from "netlify-cms"
+
+// Make these react components available within mdx templates
+const AvailableUIComponents = {
+  Button,
+  Box,
+  Text,
+}
 
 const isDevelopment = process.env.NODE_ENV === "development"
 
@@ -17,20 +29,9 @@ if (isDevelopment) {
   CMS.registerBackend("file-system", FileSystemBackend)
 }
 
-// Start the CMS
-init()
-
-/* Future mdx config
-// import React, { Component } from "react"
-// import { StyleSheetManager } from "styled-components"
-// import { MdxControl, MdxPreview } from "netlify-cms-widget-mdx"
-// import { Theme, LayoutComponents } from "../components/Theme"
-
-
 // Custom components need refs for validation and thus must be a class.
 // Additionally, after <Theme>, only one child is allowed.
 // See https://github.com/netlify/netlify-cms/issues/1346
-
 class MDXWidget extends Component {
   render() {
     return (
@@ -48,7 +49,7 @@ const ThemedPreview = props => (
     <MdxPreview
       mdx={{
         components: LayoutComponents,
-        scope: {},
+        scope: AvailableUIComponents,
         mdPlugins: [],
       }}
       {...props}
@@ -70,4 +71,6 @@ const PreviewWindow = props => {
 }
 
 CMS.registerWidget("mdx", MDXWidget, PreviewWindow)
-*/
+
+// Start the CMS
+init()

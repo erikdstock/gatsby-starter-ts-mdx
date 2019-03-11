@@ -4,14 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-// import React from "react"
-// import {Theme} from './src/components/Theme'
+import { Boot } from "./src/Boot"
 
-
-// export const wrapRootElement = ({ element }) => {
-//   return (
-//     <Theme>
-//       {element}
-//     </Theme>
-//   )
-// }
+export const wrapRootElement = Boot
