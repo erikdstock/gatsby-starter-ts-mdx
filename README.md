@@ -1,17 +1,36 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/09b68422-f4b0-4a28-8fe7-c6fdf05fae79/deploy-status)](https://app.netlify.com/sites/festive-villani-316b3c/deploys)
 
+<h1 align="center">
+  Erik's Gatsby 2019 setup
+</h1>
+
+_Heavily inspired by
+https://github.com/damassi/gatsby-starter-typescript-rebass-netlifycms_
+
+I've done my best to keep commits for this setup step-by-step in hope others
+might understand the process better and avoid some of the endless faffing I went
+through.
+
+By default this starter has both mdx and markdown/remark extensions. MDX seems a
+better fit for styled-components, so check the `disable-remark` branch for a
+rough diff on how to accomplish that.
+
+### TODOs:
+
+- [ ] Upgrade gatsby pinned version: 2.1.23 broke netlify-cms support- see
+      gatsbyjs/gatsby#12446 for fixes
+- [ ] Relative imports for MDX Global Scoped components not working from
+      gatsby-config
+- [ ] Imports for MDX global scope in cms.jsx will probably require jsx files 😮
+
+## Original Gatsby Starter Boilerplate
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
   </a>
 </p>
-<h1 align="center">
-  Erik's Gatsby 2019 setup
-</h1>
-_Heavily inspired by by https://github.com/damassi/gatsby-starter-typescript-rebass-netlifycms_
-
-# Original Gatsby Starter Boilerplate
 
 Kick off your project with this default boilerplate. This starter ships with the
 main Gatsby configuration files you might need to get up and running blazing
