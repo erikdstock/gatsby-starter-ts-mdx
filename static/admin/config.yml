@@ -20,8 +20,10 @@ publish_mode: editorial_workflow
 collections:
   # A Collection with a fixed group of pages (files)
   - name: pages
+    format: frontmatter
     label: Pages
     files:
+      # .md extension is ok here because it is in the gatsby-config for gatsby-mdx extensions
       - file: "content/pages/about.md"
         label: "About"
         name: "about"
@@ -42,39 +44,14 @@ collections:
           #     default: "Basic",
           #   }
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Body", name: "body", widget: "mdx" }
   # A not-fixed collection uses the `folder` path relative to root
   - name: blog
     label: Blog
     create: true # Allowed to create new files; used with `folder|extension|format|slug` below (rather than `files` array)
     folder: content/blog # Where to look and save
-    extension: "md" # Format to find and save
+    extension: mdx # Format to find and save
     format: "frontmatter" # Files get a yaml frontmatter section (everything but body field)
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {
-          label: "Collection Name",
-          name: "collectionName",
-          widget: "hidden",
-          default: "blog",
-        }
-      # - {
-      #     label: Template Key,
-      #     name: templateKey,
-      #     widget: hidden,
-      #     default: BlogPost,
-      #   }
-      - { label: Title, name: title, widget: string }
-      - { label: Publish Date, name: date, widget: datetime }
-      - { label: Description, name: description, widget: text }
-      - { label: Tags, name: tags, widget: list }
-      - { label: Body, name: body, widget: markdown }
-  - name: mdx
-    label: MDX
-    create: true
-    folder: content/mdx
-    extension: "mdx"
-    format: "frontmatter"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {
