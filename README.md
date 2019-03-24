@@ -17,7 +17,8 @@ rough diff on how to accomplish that.
 
 ### TODOs:
 
-- [ ] Netlify CMS may have broken?
+- [ ] Netlify CMS is broken - see gatsbyjs/gatsby#12776 . I'll update when there
+      is a more durable fix but for now pinning to netlify-cms 2.6 (2.6.0 works
+      for me) should fix it.
 - [ ] Relative imports for MDX Global Scoped components not working from
       gatsby-config
-
