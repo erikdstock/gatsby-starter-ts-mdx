@@ -21,11 +21,11 @@ The steps begin from a working typescript + styled-components setup on top of
 the default gatsby starter.
 
 1. Introduce Rebass and re-implement most of the original site using its layout
-   components [#4]
-2. Set up markdown sources using `gatsby-transformer-remark` [#9]
-3. Set up netlify-cms [#10]
-4. Set up mdx sources using `gatsby-mdx` [#11]
-5. Cleanup & most caveats for the above [#12]
+   components (#4)
+2. Set up markdown sources using `gatsby-transformer-remark` (#9)
+3. Set up netlify-cms (#10)
+4. Set up mdx sources using `gatsby-mdx` (#11)
+5. Cleanup & most caveats for the above (#12)
 
 By default this starter has both mdx and markdown/remark extensions. MDX seems a
 better fit for styled-components, so compare the
