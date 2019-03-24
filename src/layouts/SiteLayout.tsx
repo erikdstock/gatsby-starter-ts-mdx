@@ -6,10 +6,6 @@ import { maxWidth, MaxWidthProps } from "styled-system"
 import Header from "../components/Header"
 import styled from "styled-components"
 
-const PageContent = styled(Box)<MaxWidthProps>`
-  ${maxWidth};
-`
-
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -29,11 +25,11 @@ const Layout = ({ children }) => (
             <main>{children}</main>
           </Box>
         </PageContent>
-        <footer>
+        <Footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        </Footer>
       </>
     )}
   />
@@ -42,5 +38,16 @@ const Layout = ({ children }) => (
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
+
+const PageContent = styled(Box)<MaxWidthProps>`
+  ${maxWidth};
+`
+
+const Footer = styled("footer")`
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 42rem;
+  padding-top: 20px;
+`
 
 export default Layout
