@@ -20,8 +20,8 @@ of what changes I made for each step_.
 The steps begin from a working typescript + styled-components setup on top of
 the default gatsby starter.
 
-1. Introduce Rebass and re-implement most of the original site using its layout
-   components (#4)
+1. [Introduce Rebass and re-implement most of the original site using its layout
+   components](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/4)
 2. [Set up markdown sources using `gatsby-transformer-remark`](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/9)
 3. [Set up netlify-cms](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/10)
 4. [Set up mdx sources using `gatsby-mdx`](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/11)
