@@ -12,4 +12,6 @@ This is the post.
 
 ![](/assets/cat.jpg)
 
+[Go to homepage](/)
+
 ## Bye!

@@ -18,11 +18,17 @@ const IndexPage = ({ data }) => {
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <Link to={"/page-2/"}>
+          <Text color="black" mb={2} fontFamily="sans" fontSize={2}>
+            Go to page 2
+          </Text>
+        </Link>
         <Link style={{}} to={"/about"}>
           <Text color="black" mb={2} fontFamily="sans" fontSize={2}>
             About
           </Text>
         </Link>
+
         <Image />
       </div>
       {posts
