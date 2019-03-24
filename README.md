@@ -11,9 +11,26 @@ I've done my best to keep commits for this setup step-by-step in hope others
 might understand the process better and avoid some of the endless faffing I went
 through.
 
+## Steps
+
+_These intermediate PRs worked at the time I did them but as some versions
+upgraded bugs were introduced and fixed. They now exist mainly as documentation
+of what changes I made for each step_.
+
+The steps begin from a working typescript + styled-components setup on top of
+the default gatsby starter.
+
+1. Introduce Rebass and re-implement most of the original site using its layout
+   components [#4]
+2. Set up markdown sources using `gatsby-transformer-remark` [#9]
+3. Set up netlify-cms [#10]
+4. Set up mdx sources using `gatsby-mdx` [#11]
+5. Cleanup & most caveats for the above [#12]
+
 By default this starter has both mdx and markdown/remark extensions. MDX seems a
-better fit for styled-components, so check the `disable-remark` branch for a
-rough diff on how to accomplish that.
+better fit for styled-components, so compare the
+[`disable-remark`](https://github.com/erikdstock/gatsby-ts-2019/compare/disable-remark?expand=1)
+branch for a rough diff on how to unwind that.
 
 ### TODOs:
 
