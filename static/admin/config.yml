@@ -18,65 +18,70 @@ site_url: https://festive-villani-316b3c.netlify.com
 publish_mode: editorial_workflow
 
 collections:
+  # A Collection with a fixed group of pages (files)
   - name: pages
     label: Pages
     files:
-      - file: "content/about/index.md"
+      - file: "content/pages/about.md"
         label: "About"
         name: "about"
+        # All fields except `body` will be rendered as frontmatter for markdown posts
         fields:
           - {
               label: "Collection Name",
               name: "collectionName",
-              widget: "hidden",
               default: "pages",
+              widget: "hidden", # Just stick this value^ on the frontmatter
             }
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "Basic",
-            }
+          ## A hidden field like this can be used to dynamically name
+          ## rendering templates in gatsby-node.js (so could the collectionName above)
+          # - {
+          #     label: "Template Key",
+          #     name: "templateKey",
+          #     widget: "hidden",
+          #     default: "Basic",
+          #   }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+  # A not-fixed collection uses the `folder` path relative to root
   - name: blog
     label: Blog
-    create: true # Allowed to create new files; used with `folder` below (rather than `files` array)
+    create: true # Allowed to create new files; used with `folder|extension|format|slug` below (rather than `files` array)
     folder: content/blog # Where to look and save
     extension: "md" # Format to find and save
     format: "frontmatter" # Files get a yaml frontmatter section (everything but body field)
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {
-          label: Template Key,
-          name: templateKey,
-          widget: hidden,
-          default: BlogPost,
-        }
-      - { label: Title, name: title, widget: string }
-      - { label: Publish Date, name: date, widget: datetime }
-      - { label: Description, name: description, widget: text }
-      - { label: Tags, name: tags, widget: list }
-      - { label: Body, name: body, widget: mdx }
-  - name: mdx
-    label: MDX
-    folder: content/blog
-    extension: 'mdx'
-    format: 'frontmatter'
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {
-          label: Template Key,
-          name: templateKey,
-          widget: hidden,
-          default: BlogPost,
+          label: "Collection Name",
+          name: "collectionName",
+          widget: "hidden",
+          default: "blog",
         }
       - { label: Title, name: title, widget: string }
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
       - { label: Tags, name: tags, widget: list }
       - { label: Body, name: body, widget: markdown }
+  # - name: mdx
+  #   label: MDX
+  #   folder: content/blog
+  #   extension: 'mdx'
+  #   format: 'frontmatter'
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   fields:
+  #     - {
+  #         label: Template Key,
+  #         name: templateKey,
+  #         widget: hidden,
+  #         default: BlogPost,
+  #       }
+  #     - { label: Title, name: title, widget: string }
+  #     - { label: Publish Date, name: date, widget: datetime }
+  #     - { label: Description, name: description, widget: text }
+  #     - { label: Tags, name: tags, widget: list }
+  #     - { label: Body, name: body, widget: mdx }
   # - name: til
   #   label: TIL
   #   folder: content/til

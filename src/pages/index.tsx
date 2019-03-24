@@ -62,7 +62,6 @@ export const pageQuery = graphql`
             collectionName
             title
             date(formatString: "MMMM DD, YYYY")
-            path
           }
           fields {
             path
