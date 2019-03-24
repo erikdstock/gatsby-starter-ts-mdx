@@ -22,10 +22,10 @@ the default gatsby starter.
 
 1. Introduce Rebass and re-implement most of the original site using its layout
    components (#4)
-2. Set up markdown sources using `gatsby-transformer-remark` (#9)
-3. Set up netlify-cms (#10)
-4. Set up mdx sources using `gatsby-mdx` (#11)
-5. Cleanup & most caveats for the above (#12)
+2. [Set up markdown sources using `gatsby-transformer-remark`](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/9)
+3. [Set up netlify-cms](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/10)
+4. [Set up mdx sources using `gatsby-mdx`](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/11)
+5. [Cleanup & most caveats for the above](https://github.com/erikdstock/gatsby-starter-ts-mdx/pull/12)
 
 By default this starter has both mdx and markdown/remark extensions. MDX seems a
 better fit for styled-components, so compare the
