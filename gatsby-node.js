@@ -50,23 +50,6 @@ exports.createPages = ({ actions, graphql }) => {
   )
   return graphql(`
     {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            id
-            excerpt
-            frontmatter {
-              collectionName
-            }
-            fields {
-              path
-            }
-          }
-        }
-      }
       allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
           node {
@@ -82,14 +65,6 @@ exports.createPages = ({ actions, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      // console.log(`creating node at ${node.fields.path} - ${node.id}`)
-      createPage({
-        path: node.fields.path,
-        component: markdownDefaultTemplate,
-        context: {}, // additional data can be passed via context
-      })
-    })
     result.data.allMdx.edges.forEach(({ node }) => {
       // console.log(`creating node at ${node.fields.path} - ${node.id}`)
       createPage({
