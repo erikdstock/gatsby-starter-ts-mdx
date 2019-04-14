@@ -1,7 +1,8 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Box } from "rebass"
 import MDXRenderer from "gatsby-mdx/mdx-renderer"
-import { H2 } from "../Theme"
+import { graphql } from "gatsby"
+import { H2 } from "../components/UI"
 import Layout from "../layouts/SiteLayout"
 import SEO from "../components/SEO"
 
@@ -18,7 +19,9 @@ export default ({ data: { mdx } }) => {
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     */}
       <H2>{mdx.frontmatter.title}</H2>
-      <MDXRenderer>{mdx.code.body}</MDXRenderer>
+      <Box my={2}>
+        <MDXRenderer>{mdx.code.body}</MDXRenderer>
+      </Box>
     </Layout>
   )
 }

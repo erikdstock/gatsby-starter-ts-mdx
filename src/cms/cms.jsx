@@ -1,19 +1,12 @@
 import React, { Component } from "react"
-import { Button, Box, Text } from "rebass"
 import CMS, { init } from "netlify-cms"
 import { FileSystemBackend } from "netlify-cms-backend-fs"
 import { StyleSheetManager, createGlobalStyle } from "styled-components"
 
 import { MdxControl, MdxPreview } from "netlify-cms-widget-mdx"
 
-import { Theme, LayoutComponents, GlobalStyle } from "../Theme"
-
-// Make these react components available within mdx templates
-const AvailableUIComponents = {
-  Button,
-  Box,
-  Text,
-}
+import { Theme, GlobalStyle } from "../Theme"
+import { MDXLayoutComponents, MDXGlobalComponents } from "../components/UI"
 
 // netlify-cms-backend-fs setup for development
 const isDevelopment = process.env.NODE_ENV === "development"
@@ -42,21 +35,22 @@ class ThemedControl extends Component {
 // // The preview window which renders MDX content.
 // // Docs: https://www.netlifycms.org/docs/customization/
 const PreviewLayout = props => (
-  <Box m={3}>
-    <MdxPreview
-      mdx={{
-        components: LayoutComponents,
-        scope: AvailableUIComponents,
-        mdPlugins: [],
-      }}
-      {...props}
-    />
-  </Box>
+  <MdxPreview
+    mdx={{
+      components: MDXLayoutComponents,
+      scope: MDXGlobalComponents,
+      mdPlugins: [],
+    }}
+    {...props}
+  />
 )
 
 // Gatsby imports these fonts automatically so they must be added here
 const ImportFonts = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Fira+Mono|Karma:400,700|Lato:400,700');
+  .netlify-cms-widget-mdx-preview {
+    padding-top: 30px;
+  }
   body {
     padding-top: 24px
   }
