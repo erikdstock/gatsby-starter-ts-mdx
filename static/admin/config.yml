@@ -42,14 +42,14 @@ collections:
           #     default: "Basic",
           #   }
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Body", name: "body", widget: "mdx" }
   # A not-fixed collection uses the `folder` path relative to root
   - name: blog
     label: Blog
     format: frontmatter # Files get a yaml frontmatter section (everything but body field)
     create: true # Allowed to create new files; used with `folder|extension|format|slug` below (rather than `files` array)
     folder: content/blog # Where to look and save
-    extension: mdx # Format to find and save
+    extension: 'mdx' # Format to find and save
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {
@@ -62,4 +62,4 @@ collections:
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
       - { label: Tags, name: tags, widget: list }
-      - { label: Body, name: body, widget: markdown }
+      - { label: Body, name: body, widget: mdx }

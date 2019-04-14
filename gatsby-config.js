@@ -121,7 +121,7 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.jsx`,
         publicPath: "/admin",
         htmlTitle: "Admin",
-        // enableIdentityWidget: false,
+        enableIdentityWidget: false,
         manualInit: true,
       },
     },
