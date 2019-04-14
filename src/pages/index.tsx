@@ -30,7 +30,7 @@ const IndexPage = ({ data }) => {
             <Box mt={5} mb={3} key={post.id}>
               <Link
                 style={{ textDecoration: "none", color: "inherit" }}
-                to={post.fields.path}
+                to={post.fields.slug}
               >
                 <Text as="h3" color="black" mb={2} fontFamily="sans">
                   {post.frontmatter.title}
@@ -65,7 +65,7 @@ export const pageQuery = graphql`
             rawDate: date(formatString: "X")
           }
           fields {
-            path
+            slug
           }
         }
       }
