@@ -1,11 +1,22 @@
-import { MDXProvider } from "@mdx-js/tag"
+import { MDXProvider } from "@mdx-js/react"
 import React from "react"
-import { LayoutComponents, Theme } from "./Theme"
+import { Theme } from "./Theme"
+import { MDXGlobalComponents, MDXLayoutComponents } from "./components/UI"
 
 export const Boot: React.SFC<{ element: any }> = ({ element }) => {
   return (
-    <MDXProvider components={LayoutComponents}>
-      <Theme>{element}</Theme>
-    </MDXProvider>
+    <Theme>
+      <>
+        <MDXProvider
+          components={{
+            ...MDXLayoutComponents,
+            ...MDXGlobalComponents,
+            wrapper: ({ children }) => <>{children}</>,
+          }}
+        >
+          {element}
+        </MDXProvider>
+      </>
+    </Theme>
   )
 }

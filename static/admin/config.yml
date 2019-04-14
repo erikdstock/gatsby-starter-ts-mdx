@@ -9,7 +9,7 @@ localhost_development:
 
 backend:
   name: github
-  repo: erikdstock/gatsby-ts-2019 # change
+  repo: erikdstock/gatsby-starter-ts-mdx # change
   branch: master
 
 media_folder: static/assets
@@ -21,8 +21,9 @@ collections:
   # A Collection with a fixed group of pages (files)
   - name: pages
     label: Pages
+    format: frontmatter
     files:
-      - file: "content/pages/about.md"
+      - file: "content/pages/about.mdx"
         label: "About"
         name: "about"
         # All fields except `body` will be rendered as frontmatter for markdown posts
@@ -33,48 +34,22 @@ collections:
               default: "pages",
               widget: "hidden", # Just stick this value^ on the frontmatter
             }
-          ## A hidden field like this can be used to dynamically name
+          ## A field like this can be used to dynamically name
           ## rendering templates in gatsby-node.js (so could the collectionName above)
           # - {
           #     label: "Template Key",
           #     name: "templateKey",
-          #     widget: "hidden",
           #     default: "Basic",
           #   }
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Body", name: "body", widget: "mdx" }
   # A not-fixed collection uses the `folder` path relative to root
   - name: blog
     label: Blog
+    format: frontmatter # Files get a yaml frontmatter section (everything but body field)
     create: true # Allowed to create new files; used with `folder|extension|format|slug` below (rather than `files` array)
     folder: content/blog # Where to look and save
-    extension: "md" # Format to find and save
-    format: "frontmatter" # Files get a yaml frontmatter section (everything but body field)
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {
-          label: "Collection Name",
-          name: "collectionName",
-          widget: "hidden",
-          default: "blog",
-        }
-      # - {
-      #     label: Template Key,
-      #     name: templateKey,
-      #     widget: hidden,
-      #     default: BlogPost,
-      #   }
-      - { label: Title, name: title, widget: string }
-      - { label: Publish Date, name: date, widget: datetime }
-      - { label: Description, name: description, widget: text }
-      - { label: Tags, name: tags, widget: list }
-      - { label: Body, name: body, widget: markdown }
-  - name: mdx
-    label: MDX
-    create: true
-    folder: content/mdx
-    extension: "mdx"
-    format: "frontmatter"
+    extension: 'mdx' # Format to find and save
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {

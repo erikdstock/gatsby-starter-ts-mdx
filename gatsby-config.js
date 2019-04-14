@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/camelcase */
+const mdxFeed = require("gatsby-mdx/feed")
 
 module.exports = {
   siteMetadata: {
     title: `Gatsby 2019`,
+    siteUrl: `https://festive-villani-316b3c.netlify.com`,
     description: `A gatsby starter using Typescript, Netlify-CMS, MDX and Netlify
     Inspired by https://github.com/damassi/gatsby-starter-typescript-rebass-netlifycms`,
     author: `@erikdstock`,
@@ -47,13 +49,6 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/mdx`,
-        name: "blog",
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         name: `images`,
         path: `${__dirname}/static/assets`,
       },
@@ -62,43 +57,10 @@ module.exports = {
     /**
      * Transformers for making content available in graphql queries
      */
+
     // For querying images
     `gatsby-transformer-sharp`,
-    // For querying markdown
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        // CommonMark mode (default: true)
-        // commonmark: true,
-        // Footnotes mode (default: true)
-        // footnotes: true,
-        // Pedantic mode (default: true)
-        // pedantic: true,
-        // GitHub Flavored Markdown mode (default: true)
-        // gfm: true,
-        // Plugins configs
-        plugins: [
-          // Convert absolute image file paths (from netlify-cms) to relative. Required for remark-images to work.
-          // https://www.gatsbyjs.org/packages/gatsby-remark-relative-images/?=gatsby-remark-relative-images
-          // See options ^ For how to convert images from frontmatter if needed
-          {
-            resolve: `gatsby-remark-relative-images`,
-            options: {},
-          },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 820,
-              quality: 90,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
-      },
-    },
+
     // For querying MDX
     {
       resolve: `gatsby-mdx`,
@@ -109,21 +71,6 @@ module.exports = {
           // matching keys to the `name` from a gatsby-source-filesystem config (eg `blog`)
           default: require.resolve("./src/layouts/DefaultMDXLayout.tsx"),
         },
-        // Imports here are available globally to .mdx files, with the exception
-        // of automatically created pages located in /pages. This is a bug in
-        // gatsby-mdx. See https://github.com/ChristopherBiscardi/gatsby-mdx/issues/243
-        //
-        // Also note: For mdx to work in NetlifyCMS, global scope passed in here
-        // must also be passed into `cms.js`, under the `scope` key.
-        //
-        globalScope: `
-          import { Button, Box, Text } from 'rebass'
-          export default {
-            Button,
-            Box,
-            Text
-          }
-        `,
         gatsbyRemarkPlugins: [
           // Convert absolute image file paths (from netlify-cms) to relative. Required for remark-images to work.
           // https://www.gatsbyjs.org/packages/gatsby-remark-relative-images/?=gatsby-remark-relative-images
@@ -146,6 +93,10 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: mdxFeed,
+    },
 
     /**
      * Plugins for general functionality
@@ -161,7 +112,7 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.jsx`,
         publicPath: "/admin",
         htmlTitle: "Admin",
-        // enableIdentityWidget: false,
+        enableIdentityWidget: false,
         manualInit: true,
       },
     },

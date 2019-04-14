@@ -10,8 +10,8 @@ const path = require("path")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-  // Add path to markdown/mdx nodes
-  if (node.internal.type === "MarkdownRemark" || node.internal.type === "Mdx") {
+  // Add slug path to mdx nodes
+  if (node.internal.type === "Mdx") {
     // relativePath (relative to the `/content` dir) is used to resolve basePath down below.
     // By convention it also matches collectionName, but could be different.
     const relativePath = path.relative(
@@ -35,7 +35,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       })
     )
     createNodeField({
-      name: `path`,
+      name: `slug`,
       node,
       value: nodePath,
     })
@@ -45,34 +45,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const markdownDefaultTemplate = path.resolve(
-    `src/layouts/MarkdownDefault.tsx`
-  )
   return graphql(`
     {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            id
-            excerpt
-            frontmatter {
-              collectionName
-            }
-            fields {
-              path
-            }
-          }
-        }
-      }
       allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
           node {
             id
             fields {
-              path
+              slug
             }
           }
         }
@@ -82,20 +62,12 @@ exports.createPages = ({ actions, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      // console.log(`creating node at ${node.fields.path} - ${node.id}`)
-      createPage({
-        path: node.fields.path,
-        component: markdownDefaultTemplate,
-        context: {}, // additional data can be passed via context
-      })
-    })
     result.data.allMdx.edges.forEach(({ node }) => {
       // console.log(`creating node at ${node.fields.path} - ${node.id}`)
       createPage({
         // This is the slug we created before
         // (or `node.frontmatter.slug`)
-        path: node.fields.path,
+        path: node.fields.slug,
         // This component will wrap our MDX content
         component: path.resolve(`./src/layouts/DefaultMDXLayout.tsx`),
         // We can use the values in this context in
