@@ -11,7 +11,6 @@ export const Boot: React.SFC<{ element: any }> = ({ element }) => {
           components={{
             ...MDXLayoutComponents,
             ...MDXGlobalComponents,
-            wrapper: ({ children }) => <>{children}</>,
           }}
         >
           {element}
